@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Business.Abstract;
 using Business.Constants.Messages;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -11,7 +12,7 @@ using Entities.DTOs;
 
 namespace Business.Concrete
 {
-    public class CarManager
+    public class CarManager:ICarService
     {
         ICarDal _carDal = null;
         public CarManager(ICarDal carDal)
@@ -33,7 +34,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(p => p.ColorId == id));
         }
-     
+   
         public IResult Add(Car car)
         {
             _carDal.Add(car);
